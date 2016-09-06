@@ -1,0 +1,28 @@
+set nocompatible
+set number
+set encoding=utf-8
+syntax on
+set tabstop=4
+set shiftwidth=4
+
+autocmd BufNewFile *.py 0r ~/.vim/template/simpletest.py
+autocmd BufNewFile *.py ks|call PyFileName()|'s
+autocmd BufNewFile *.py ks|call PyCreatedTime()|'s
+
+function! PyFileName()
+    if line("$") > 10
+        let l = 10
+    else
+        let l = line("$")
+    endif
+    exe "1," . l . "g/File Name:.*/s/File Name:.*/File Name:".expand("%")
+endfunction
+
+function! PyCreatedTime()
+    if line("$") > 10
+        let l = 10
+    else
+        let l = line("$")
+    endif
+    exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time:".strftime("%Y-    %m-%d %T")
+endfunction
