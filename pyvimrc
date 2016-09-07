@@ -3,7 +3,9 @@ set number
 set encoding=utf-8
 syntax on
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
+set expandtab
 
 autocmd BufNewFile *.py 0r ~/.vim/template/simpletest.py
 autocmd BufNewFile *.py ks|call PyFileName()|'s
@@ -24,5 +26,5 @@ function! PyCreatedTime()
     else
         let l = line("$")
     endif
-    exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time:".strftime("%Y-    %m-%d %T")
+    exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time:".strftime("%Y-%m-%d %T")
 endfunction
